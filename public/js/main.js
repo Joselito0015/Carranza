@@ -1,6 +1,6 @@
 
 const industria= $('#InputIndustria')
-const problema= $('#InputProblema')
+// const problema= $('#InputProblema')
 const detalles= $('#InputDetalles')
 
 const Btn1= $('#Btn1')
@@ -13,32 +13,131 @@ const ContactarLast= $('#ContactarLast')
 const NewConsult= $('#NewConsult')
 
 
-// Eventos
-industria.on("input",()=>{
-  if (industria.val().trim() === ""){
-    Btn1.attr("disabled", true);
-  }
-  else{
-    Btn1.removeAttr("disabled")  
-  }
+const otroInput = $('#InputProblema');
+const otroRadioBtn= $('#thirdRadio')
 
-})
 
-problema.on("input",()=>{
-  if (problema.val().trim() === ""){
+const GBtn = $('#radio3')
+const PBtn = $('#radio4')
+const PBtn2 = $('#radio5')
+const PBtn3= $('#radio6')
+const PBtn4 = $('#radio7')
+const PBtn5 = $('#radio8')
+
+
+
+otroRadioBtn.on('change', function() {
+  if ($(this).is(':checked')) {
+    console.log("se selecionso esteee")
+    // Si se seleccionó "Otros", habilitamos el input text correspondiente
+    otroInput.prop('disabled', false);
     Btn2.attr("disabled", true);
-  }
-  else{
-    Btn2.removeAttr("disabled")  
-  }
 
-})
+    
+    otroInput.on('input', function() {
+      Btn2.removeAttr("disabled")  
+    })
+
+
+  } else {
+    console.log("se selecionso otroo")
+    // Si se seleccionó otra opción, deshabilitamos el input text correspondiente
+    otroInput.prop('disabled', true);
+    
+  }
+});
+
+GBtn.on('change', function() {
+  if ($(this).is(':checked')) {
+    console.log("se selecionso esteee")
+    // Si se seleccionó "Otros", habilitamos el input text correspondiente
+    otroInput.attr("disabled", true)
+    otroInput.val("")
+    Btn2.removeAttr("disabled")
+  } 
+});
+
+PBtn.on('change', function() {
+  if ($(this).is(':checked')) {
+    console.log("se selecionso esteee")
+    // Si se seleccionó "Otros", habilitamos el input text correspondiente
+    otroInput.attr("disabled", true)
+    otroInput.val("")
+    Btn2.removeAttr("disabled")
+  } 
+});
+
+PBtn2.on('change', function() {
+  if ($(this).is(':checked')) {
+    console.log("se selecionso esteee")
+    // Si se seleccionó "Otros", habilitamos el input text correspondiente
+    otroInput.attr("disabled", true)
+    otroInput.val("")
+    Btn2.removeAttr("disabled")
+  } 
+});
+
+PBtn3.on('change', function() {
+  if ($(this).is(':checked')) {
+    console.log("se selecionso esteee")
+    // Si se seleccionó "Otros", habilitamos el input text correspondiente
+    otroInput.attr("disabled", true)
+    otroInput.val("")
+    Btn2.removeAttr("disabled")
+  } 
+});
+
+PBtn4.on('change', function() {
+  if ($(this).is(':checked')) {
+    console.log("se selecionso esteee")
+    // Si se seleccionó "Otros", habilitamos el input text correspondiente
+    otroInput.attr("disabled", true)
+    otroInput.val("")
+    Btn2.removeAttr("disabled")
+  } 
+});
+PBtn5.on('change', function() {
+  if ($(this).is(':checked')) {
+    console.log("se selecionso esteee")
+    // Si se seleccionó "Otros", habilitamos el input text correspondiente
+    otroInput.attr("disabled", true)
+    otroInput.val("")
+    Btn2.removeAttr("disabled")
+  } 
+});
+
+
+
+
+// industria.on("input",()=>{
+//   if (industria.val().trim() === ""){
+//     Btn1.attr("disabled", true);
+//   }
+//   else{
+//     Btn1.removeAttr("disabled")  
+//   }
+
+// })
+
+// problema.on("input",()=>{
+//   if (problema.val().trim() === ""){
+//     Btn2.attr("disabled", true);
+//   }
+//   else{
+//     Btn2.removeAttr("disabled")  
+//   }
+
+// })
 
 detalles.on("input",()=>{
   if (detalles.val().trim() === ""){
+
     BtnSubmit.attr("disabled", true);
   }
   else{
+    const valorSeleccionado = $('ul.list-group input[type="radio"]:checked').val();
+    console.log(valorSeleccionado)
+
     BtnSubmit.removeAttr("disabled")    
 
   }
@@ -77,8 +176,7 @@ BtnSubmit.on("click",  async (e )=> {
           // Change button state here
           NewConsult.removeAttr("disabled");
           ContactarLast.removeAttr("disabled");
-          industria.val("")
-          problema.val("")
+          otroInput.val("")
           detalles.val("")
 
           ContactarLast.addClass("btn-success")
@@ -100,14 +198,51 @@ BtnSubmit.on("click",  async (e )=> {
 
 
 function generatePrompt() {
-    return `Dame una solución o estudios que se deben realizar. En caso se pueda, usa leyes peruanas. Los detalles de la consulta son: 
-    
-    - 1. mi industria es: ${industria.val()}
-    - 2. mi problema es ${problema.val()} 
-    - 3. Detalles Extra ${detalles.val()}
 
-    Da la solución de forma objetiva, profesional y directa.
-    Primero da la solución de forma objetiva, al final invitalos a obtener nuestros servicios de la consultoría Carranza con el número +51 994-615-074.
-    Dame la resupuesta en menos de 1000 caracteres.`;
+  const valorSeleccionado = $('ul.list-group input[type="radio"]:checked').val();
+
+  let Tema
+
+  if (valorSeleccionado === "1") {
+    Tema = "Product management";
+  } else if (valorSeleccionado === "2") {
+    Tema = "Growth strategy";
+  } else if (valorSeleccionado === "3") {
+    Tema = "Marketing";
+  } else if (valorSeleccionado === "4") {
+    Tema = "Finance";
+  } else if (valorSeleccionado === "5") {
+    Tema = "Technology";
+  } else if (valorSeleccionado === "6") {
+    Tema = "Data";
+  }
+  else if (valorSeleccionado === "7"){
+    Tema = otroInput.val()
+  }
+
+  return `
+  Da la solución de forma objetiva, profesional y directa.
+    
+  Primero dame la solución de forma objetiva.
+    
+  Dame la resupuesta en menos de 1000 caracteres. 
+
+  Dame una respuesta corta o consejo corto que se pueda tomar. 
+  
+  En caso se pueda, usa ejemplos del ecosistema de latinoamerica. Los detalles de la consulta son:
+    - 1. mi tópico es  ${Tema} 
+    - 2. Detalles Extra ${detalles.val()}
+  `
   }
   
+
+  industria.on('input', function() {
+    const email = industria.val().trim();
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    if (emailRegex.test(email)) {
+      Btn1.prop('disabled', false);
+    } else {
+      Btn1.prop('disabled', true);
+    }
+  });

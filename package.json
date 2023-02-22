@@ -1,5 +1,5 @@
 {
-  "name": "openai-quickstart-node",
+  "name": "gmorning",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -8,11 +8,20 @@
   "dependencies": {
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
+    "googleapis": "^111.0.0",
     "jquery": "^3.6.3",
-    "nodemon": "^2.0.20",
-    "openai": "^3.1.0",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "typed.js": "^2.0.12"
-  }
+    "openai": "^3.1.0"
+  },
+  "description": "",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Joselito0015/Gmorning.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Joselito0015/Gmorning/issues"
+  },
+  "homepage": "https://github.com/Joselito0015/Gmorning#readme"
 }

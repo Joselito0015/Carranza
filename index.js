@@ -23,24 +23,37 @@ app.get('/', async (req, res) => {
 });
 
 
-app.post('/', async (req, res) => {
-
-  console.log("REQUEST!!!!!!!!")  
+const requestOpenAIApi= async(req) => {
   const completion = await  openai.createCompletion({
     max_tokens: 3800,
     model: "text-davinci-003",
     prompt: req.query.prompt,
-    temperature: 0.9
-  });
+    temperature: 0.9 
+  })
+  return completion
+}
 
-  // Obtener la respuesta en formato de texto
-  const responseText = completion.data.choices[0].text;
-  // console.log(responseText);
+app.post('/', async (req, res) => {
 
-  // Enviar la respuesta al cliente
-  console.log(responseText);
+  console.log("REQUEST!!!!!!!!")  
+  let completion
+  try {
+    completion = await requestOpenAIApi(req)
+      // Obtener la respuesta en formato de texto
+    const responseText = completion.data.choices[0].text;
+    // console.log(responseText);
 
-  res.send(responseText);
+    // Enviar la respuesta al cliente
+    console.log(responseText);
+
+    res.send(responseText + "\n Visita la página de GrowthMorning para más información");
+    
+
+
+  } catch{
+    res.send("Up! tuvimos un problema con el servidor. Intentalo más tarde");
+  }
+  
 });
 
 
